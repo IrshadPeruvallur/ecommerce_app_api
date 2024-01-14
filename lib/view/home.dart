@@ -1,4 +1,5 @@
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,13 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {}, icon: Icon(EneftyIcons.search_normal_2_outline)),
+        actions: [
+          IconButton(
+              onPressed: () {}, icon: Icon(EneftyIcons.shopping_cart_outline))
+        ],
+        centerTitle: true,
         title: Text('Ecommerce App'),
       ),
       body: Center(
@@ -25,7 +33,7 @@ class Home extends StatelessWidget {
                   final product = allProducts[index];
                   return ListTile(
                     title: Text(product.title ?? ''),
-                    subtitle: Text('ID: ${product.id ?? ''}'),
+                    subtitle: Text('ID: ${product.sId ?? ''}'),
                   );
                 },
               );

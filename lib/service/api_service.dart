@@ -7,23 +7,16 @@ class ApiService {
   final url = 'http://localhost:9000/api/users/products';
   Dio dio = Dio();
 
-  Future<List<AppModel>> getData() async {
+  Future<List<AllProducts>> getData() async {
     try {
       final response = await dio.get(url);
       log('URL: $url');
       log('Response: ${response.data}');
 
       if (response.statusCode == 200) {
-        final jsonData = response.data;
-
-        if (jsonData is Map<String, dynamic> &&
-            jsonData.containsKey('data') &&
-            jsonData['data'] is Map<String, dynamic> &&
-            jsonData['data'].containsKey('allProducts')) {
-          final List<dynamic> allProducts = jsonData['data']['allProducts'];
-          return allProducts
-              .map((product) => AppModel.fromJson(product))
-              .toList();
+        final dataApi = DataApi.fromJson(response.data);
+        if (dataApi.data != null && dataApi.data!.allProducts != null) {
+          return dataApi.data!.allProducts!;
         } else {
           throw Exception('Invalid response structure');
         }
@@ -32,7 +25,7 @@ class ApiService {
         throw Exception('Failed to load');
       }
     } catch (e) {
-      print('Error in ApiService: $e');
+      print('Error: $e');
       throw e;
     }
   }
