@@ -44,6 +44,7 @@ class Welcome extends StatelessWidget {
                 left: 100,
                 right: 100,
                 child: RectangularButton(
+                  size,
                   name: 'Get Started',
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(

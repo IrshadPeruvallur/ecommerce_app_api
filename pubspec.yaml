@@ -39,6 +39,7 @@ dependencies:
   provider: ^6.1.1
   google_fonts: ^6.1.0
   enefty_icons: ^1.0.7
+  readmore: ^2.2.0
 
 dev_dependencies:
   flutter_test:

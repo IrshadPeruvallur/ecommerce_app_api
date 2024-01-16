@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-RectangularButton({required String name, required VoidCallback? onPressed}) {
+RectangularButton(Size size,
+    {required String name, required VoidCallback? onPressed}) {
   return SizedBox(
-    height: 60,
-    width: 150,
+    height: size.height * .08,
+    width: size.width * .2,
     child: ElevatedButton(
       style: ButtonStyle(
         backgroundColor:
@@ -14,7 +15,7 @@ RectangularButton({required String name, required VoidCallback? onPressed}) {
       onPressed: onPressed,
       child: Text(name,
           style: GoogleFonts.montserrat(
-              fontSize: 18,
+              fontSize: size.width * .04,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w400)),
     ),
