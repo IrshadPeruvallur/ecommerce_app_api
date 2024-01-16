@@ -26,4 +26,12 @@ class ApiService {
       throw e;
     }
   }
+
+  Future<void> addToCart(AppModel data) async {
+    try {
+      await dio.post(url, data: data.toJson());
+    } catch (e) {
+      log("$e");
+    }
+  }
 }

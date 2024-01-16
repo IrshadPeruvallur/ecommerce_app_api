@@ -14,4 +14,12 @@ class AppModel {
     price = json['price'];
     image = json['image'];
   }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    data['image'] = this.image;
+    return data;
+  }
 }
