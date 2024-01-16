@@ -1,4 +1,5 @@
 import 'package:ecommerce_api/view/home.dart';
+import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +51,7 @@ class Welcome extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Home(),
+                          builder: (context) => LoginPage(),
                         ),
                         (route) => false);
                   },
