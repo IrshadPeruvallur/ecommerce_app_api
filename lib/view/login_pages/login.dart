@@ -104,6 +104,8 @@ class LoginPage extends StatelessWidget {
       await getProvider.userLogin(userInfo);
       log("Token : $tokenId");
       if (getProvider.userStatusCode == "200" && tokenId.isNotEmpty) {
+        final sharedPreferences = await SharedPreferences.getInstance();
+        await sharedPreferences.setString('token', tokenId);
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home()));
