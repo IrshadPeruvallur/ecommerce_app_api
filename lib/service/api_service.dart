@@ -2,11 +2,13 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:ecommerce_api/model/app_model.dart';
+import 'package:ecommerce_api/model/user_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  final url = 'http://localhost:9000/api/users/products';
   Dio dio = Dio();
   Future<List<AppModel>> getData() async {
+    final url = 'http://localhost:9000/api/users/products';
     try {
       final response = await dio.get(url);
       log('URL: $url');
@@ -27,11 +29,19 @@ class ApiService {
     }
   }
 
-  Future<void> addToCart(AppModel data) async {
+  createUser(UserModel userInfo) async {
+    final url = 'http://localhost:9000/api/users/register';
     try {
-      await dio.post(url, data: data.toJson());
+      Response response = await dio.post(url, data: userInfo.toJosn());
+      if (response.statusCode == 201) {
+        log('Account created');
+      } else {
+        log("Account not created. Status code: ${response.statusCode}");
+        return null;
+      }
     } catch (e) {
       log("$e");
+      return null;
     }
   }
 }

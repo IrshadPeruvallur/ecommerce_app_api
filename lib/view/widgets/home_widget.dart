@@ -63,16 +63,16 @@ Widget prodectShow(Size size,
               trimExpandedText: "Show less",
               title),
         ),
-        SizedBox(
-          width: size.width * .35,
-          child: ReadMoreText(
-              style: TextStyle(fontSize: 10),
-              trimLines: 2,
-              trimMode: TrimMode.Line,
-              trimCollapsedText: "Show more",
-              trimExpandedText: "Show less",
-              description),
-        ),
+        // SizedBox(
+        //   width: size.width * .35,
+        //   child: ReadMoreText(
+        //       style: TextStyle(fontSize: 10),
+        //       trimLines: 2,
+        //       trimMode: TrimMode.Line,
+        //       trimCollapsedText: "Show more",
+        //       trimExpandedText: "Show less",
+        //       description),
+        // ),
         SizedBox(height: 5),
         Text(
           '\$$prize',

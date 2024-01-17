@@ -1,3 +1,4 @@
+import 'package:ecommerce_api/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_api/model/app_model.dart';
 import 'package:ecommerce_api/service/api_service.dart';
@@ -13,5 +14,10 @@ class DataProvider extends ChangeNotifier {
     } catch (e) {
       print('Error in DataProvider: $e');
     }
+  }
+
+  createUser(UserModel userInfo) async {
+    await _apiService.createUser(userInfo);
+    notifyListeners();
   }
 }

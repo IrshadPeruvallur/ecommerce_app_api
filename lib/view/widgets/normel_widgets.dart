@@ -21,3 +21,55 @@ RectangularButton(Size size,
     ),
   );
 }
+
+Widget TextFieldWidget(size, {controller, label}) {
+  return Column(
+    children: [
+      TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            labelText: label,
+            labelStyle: TextStyle(color: Colors.black),
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+          )),
+      SizedBox(
+        height: size.width * .05,
+      )
+    ],
+  );
+}
+
+Widget BlackElevatedButton(size, {required label, VoidCallback? onPressed}) {
+  return SizedBox(
+    height: size.width * .14,
+    width: double.infinity,
+    child: ElevatedButton(
+        style: ButtonStyle(
+            elevation: MaterialStatePropertyAll(size.width * .07),
+            backgroundColor: MaterialStatePropertyAll(Colors.black)),
+        onPressed: () {
+          onPressed!();
+        },
+        child: Text(
+          label,
+          style: TextStyle(
+              fontSize: size.width * .045,
+              color: const Color.fromARGB(255, 255, 255, 255)),
+        )),
+  );
+}
+
+Widget TextButtonWidget(size, context,
+    {required label, required VoidCallback? onPressed}) {
+  return TextButton(
+      style: ButtonStyle(
+          overlayColor: MaterialStatePropertyAll(Colors.transparent)),
+      onPressed: () {
+        onPressed!();
+      },
+      child: Text(
+        label,
+        style: TextStyle(fontSize: size.width * .04, color: Colors.black),
+      ));
+}

@@ -1,4 +1,5 @@
-import 'package:ecommerce_api/view/login_pages/sign_in.dart';
+import 'package:ecommerce_api/view/login_pages/sign_up.dart';
+import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -8,7 +9,9 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -39,50 +42,21 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
-                      TextFormField(),
-                      SizedBox(
-                        height: size.width * .05,
-                      ),
-                      TextFormField(),
-                      SizedBox(
-                        height: size.width * .18,
-                      ),
-                      SizedBox(
-                        height: size.width * .14,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                elevation:
-                                    MaterialStatePropertyAll(size.width * .07),
-                                backgroundColor:
-                                    MaterialStatePropertyAll(Colors.black)),
-                            onPressed: () {},
-                            child: Text(
-                              "Log In",
-                              style: TextStyle(
-                                  fontSize: size.width * .045,
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255)),
-                            )),
-                      ),
+                      TextFieldWidget(size, label: 'Email or Username'),
+                      TextFieldWidget(size, label: 'Password'),
                       SizedBox(
                         height: size.width * .1,
                       ),
-                      TextButton(
-                          style: ButtonStyle(
-                              overlayColor: MaterialStatePropertyAll(
-                                  const Color.fromARGB(227, 227, 227, 227))),
+                      BlackElevatedButton(size, label: 'Log in'),
+                      SizedBox(
+                        height: size.width * .1,
+                      ),
+                      TextButtonWidget(size, context, label: 'SIGN UP',
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SignInPage(),
-                            ));
-                          },
-                          child: Text(
-                            "SIGN UP",
-                            style: TextStyle(
-                                fontSize: size.width * .04,
-                                color: Colors.black),
-                          ))
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignInPage(),
+                        ));
+                      })
                     ],
                   ),
                 ),
