@@ -4,10 +4,12 @@ import 'package:readmore/readmore.dart';
 
 Widget topBarIcon(Size size, {required IconData icon}) {
   return Container(
+    height: size.width * .15,
+    width: size.width * .15,
     margin: EdgeInsets.only(right: 15),
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
-      color: Colors.grey[200],
+      color: Colors.grey[300],
       borderRadius: BorderRadius.circular(10),
     ),
     child: Icon(

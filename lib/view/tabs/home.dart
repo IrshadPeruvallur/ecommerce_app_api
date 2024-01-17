@@ -47,30 +47,12 @@ class Home extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    topBarIcon(
-                      size,
-                      icon: EneftyIcons.star_outline,
-                    ),
-                    topBarIcon(
-                      size,
-                      icon: EneftyIcons.path_outline,
-                    ),
-                    topBarIcon(
-                      size,
-                      icon: EneftyIcons.star_outline,
-                    ),
-                    topBarIcon(
-                      size,
-                      icon: EneftyIcons.star_outline,
-                    ),
-                    topBarIcon(
-                      size,
-                      icon: EneftyIcons.star_outline,
-                    ),
-                    topBarIcon(
-                      size,
-                      icon: EneftyIcons.star_outline,
-                    ),
+                    topBarIcon(size, icon: EneftyIcons.star_outline),
+                    topBarIcon(size, icon: EneftyIcons.path_outline),
+                    topBarIcon(size, icon: EneftyIcons.star_outline),
+                    topBarIcon(size, icon: EneftyIcons.star_outline),
+                    topBarIcon(size, icon: EneftyIcons.star_outline),
+                    topBarIcon(size, icon: EneftyIcons.star_outline),
                   ],
                 ),
               ),

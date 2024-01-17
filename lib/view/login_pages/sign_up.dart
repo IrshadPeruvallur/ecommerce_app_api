@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:ecommerce_api/controller/data_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
-import 'package:ecommerce_api/view/home.dart';
+import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:email_validator/email_validator.dart';

@@ -1,6 +1,7 @@
+import 'package:ecommerce_api/controller/bottom_provider.dart';
 import 'package:ecommerce_api/controller/data_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
-import 'package:ecommerce_api/view/home.dart';
+import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => UserProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BottomProvider(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData(

@@ -1,5 +1,6 @@
-import 'package:ecommerce_api/view/home.dart';
+import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
+import 'package:ecommerce_api/view/main_screen.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -74,7 +75,7 @@ class Welcome extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => Home(),
+          builder: (context) => MainPage(),
         ),
       );
     }

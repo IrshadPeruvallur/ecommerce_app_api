@@ -1,7 +1,8 @@
 import 'dart:developer';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
-import 'package:ecommerce_api/view/home.dart';
+import 'package:ecommerce_api/view/main_screen.dart';
+import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/sign_up.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
@@ -108,7 +109,7 @@ class LoginPage extends StatelessWidget {
         await sharedPreferences.setString('token', tokenId);
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => MainPage()));
       }
     } catch (e) {
       showErrorSnackbar(context, 'Username and password do not match.');
