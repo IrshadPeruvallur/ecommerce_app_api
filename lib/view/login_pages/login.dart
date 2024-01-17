@@ -1,9 +1,17 @@
+import 'dart:developer';
+
+import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/model/user_model.dart';
+import 'package:ecommerce_api/view/home.dart';
 import 'package:ecommerce_api/view/login_pages/sign_up.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +50,18 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
-                      TextFieldWidget(size, label: 'Email or Username'),
-                      TextFieldWidget(size, label: 'Password'),
+                      TextFieldWidget(size,
+                          label: 'Username', controller: usernameController),
+                      TextFieldWidget(size,
+                          label: 'Password', controller: passwordController),
                       SizedBox(
                         height: size.width * .1,
                       ),
-                      BlackElevatedButton(size, label: 'Log in'),
+                      BlackElevatedButton(
+                        size,
+                        label: 'Log in',
+                        onPressed: () => userLogin(context),
+                      ),
                       SizedBox(
                         height: size.width * .1,
                       ),
@@ -66,5 +80,28 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  userLogin(context) async {
+    final userInfo = UserModel(
+      username: usernameController.text.toString(),
+      password: passwordController.text.toString(),
+    );
+
+    final getProvider = Provider.of<DataProvider>(context, listen: false);
+
+    try {
+      await getProvider.userLogin(userInfo);
+      if (getProvider.userStatusCode == "200") {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return Home();
+          },
+        ));
+      }
+    } catch (e) {
+      log('Error during user login: $e');
+      // Handle any additional logic or UI updates if needed
+    }
   }
 }

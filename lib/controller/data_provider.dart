@@ -6,6 +6,7 @@ import 'package:ecommerce_api/service/api_service.dart';
 class DataProvider extends ChangeNotifier {
   ApiService _apiService = ApiService();
   List<AppModel> prodectList = [];
+  String? userStatusCode;
 
   getData() async {
     try {
@@ -18,6 +19,12 @@ class DataProvider extends ChangeNotifier {
 
   createUser(UserModel userInfo) async {
     await _apiService.createUser(userInfo);
+    notifyListeners();
+  }
+
+  userLogin(UserModel userInfo) async {
+    await _apiService.userLogin(userInfo);
+    userStatusCode = _apiService.userStatusCode;
     notifyListeners();
   }
 }

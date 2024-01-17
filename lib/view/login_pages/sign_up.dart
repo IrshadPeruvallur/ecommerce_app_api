@@ -93,9 +93,9 @@ class SignInPage extends StatelessWidget {
 
   createUser(context) async {
     final userInfo = await UserModel(
-      usernameController.text.toString(),
-      emailController.text.toString(),
-      passwordController.text.toString(),
+      username: usernameController.text.toString(),
+      email: emailController.text.toString(),
+      password: passwordController.text.toString(),
     );
 
     final getProvider = await Provider.of<DataProvider>(context, listen: false);
