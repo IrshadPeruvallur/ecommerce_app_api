@@ -1,12 +1,11 @@
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_api/model/app_model.dart';
-import 'package:ecommerce_api/service/api_service.dart';
+import 'package:ecommerce_api/service/prodect_service.dart';
 
-class DataProvider extends ChangeNotifier {
+class ProductProvider extends ChangeNotifier {
   ApiService _apiService = ApiService();
   List<AppModel> prodectList = [];
-  String? userStatusCode;
 
   getData() async {
     try {
@@ -15,16 +14,5 @@ class DataProvider extends ChangeNotifier {
     } catch (e) {
       print('Error in DataProvider: $e');
     }
-  }
-
-  createUser(UserModel userInfo) async {
-    await _apiService.createUser(userInfo);
-    notifyListeners();
-  }
-
-  userLogin(UserModel userInfo) async {
-    await _apiService.userLogin(userInfo);
-    userStatusCode = _apiService.userStatusCode;
-    notifyListeners();
   }
 }

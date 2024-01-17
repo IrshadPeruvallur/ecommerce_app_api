@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<DataProvider>(context, listen: false).getData();
+    Provider.of<ProductProvider>(context, listen: false).getData();
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -77,7 +77,7 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: size.height * .03,
               ),
-              Consumer<DataProvider>(
+              Consumer<ProductProvider>(
                 builder: (context, value, child) {
                   if (value.prodectList.isNotEmpty) {
                     final allProducts = value.prodectList;

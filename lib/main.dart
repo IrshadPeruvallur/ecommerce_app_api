@@ -1,4 +1,5 @@
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/view/home.dart';
 import 'package:ecommerce_api/view/welcome/welcome.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DataProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
+        )
+      ],
       child: MaterialApp(
         theme: ThemeData(
             textTheme: TextTheme(

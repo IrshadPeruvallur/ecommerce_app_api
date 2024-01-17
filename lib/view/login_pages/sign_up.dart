@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
@@ -98,7 +99,7 @@ class SignInPage extends StatelessWidget {
       password: passwordController.text.toString(),
     );
 
-    final getProvider = await Provider.of<DataProvider>(context, listen: false);
+    final getProvider = await Provider.of<UserProvider>(context, listen: false);
     await getProvider.createUser(userInfo);
     if (getProvider.createUser != null) {
       Navigator.pushReplacement(
