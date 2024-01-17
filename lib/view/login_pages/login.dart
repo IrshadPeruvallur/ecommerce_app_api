@@ -12,7 +12,7 @@ String tokenId = '';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,64 +22,71 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: size.height * .1,
-              ),
-              Text(
-                "Hello!",
-                style: TextStyle(fontSize: size.width * .12),
-              ),
-              Text(
-                "WELCOME BACK",
-                style: TextStyle(
-                    fontWeight: FontWeight.w700, fontSize: size.width * .07),
-              ),
-              SizedBox(
-                height: size.width * .1,
-              ),
-              Card(
-                elevation: size.width * .05,
-                shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(size.width * .04))),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      TextFieldWidget(size,
-                          label: 'Username',
-                          controller: getProvider.usernameController),
-                      TextFieldWidget(size,
-                          label: 'Password',
-                          controller: getProvider.passwordController),
-                      SizedBox(
-                        height: size.width * .1,
-                      ),
-                      BlackElevatedButton(
-                        size,
-                        label: 'Log in',
-                        onPressed: () => userLogin(context),
-                      ),
-                      SizedBox(
-                        height: size.width * .1,
-                      ),
-                      TextButtonWidget(size, context, label: 'SIGN UP',
-                          onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SignInPage(),
-                        ));
-                      })
-                    ],
-                  ),
+      body: Form(
+        key: formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: size.height * .1,
                 ),
-              )
-            ],
+                Text(
+                  "Hello!",
+                  style: TextStyle(fontSize: size.width * .12),
+                ),
+                Text(
+                  "WELCOME BACK",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: size.width * .07),
+                ),
+                SizedBox(
+                  height: size.width * .1,
+                ),
+                Card(
+                  elevation: size.width * .05,
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(size.width * .04))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        TextFieldWidget(size,
+                            label: 'Username',
+                            controller: getProvider.usernameController),
+                        TextFieldWidget(size,
+                            label: 'Password',
+                            controller: getProvider.passwordController),
+                        SizedBox(
+                          height: size.width * .1,
+                        ),
+                        BlackElevatedButton(
+                          size,
+                          label: 'Log in',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              userLogin(context);
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: size.width * .1,
+                        ),
+                        TextButtonWidget(size, context, label: 'SIGN UP',
+                            onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SignUpPage(),
+                          ));
+                        })
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -97,12 +104,12 @@ class LoginPage extends StatelessWidget {
       await getProvider.userLogin(userInfo);
       log("Token : $tokenId");
       if (getProvider.userStatusCode == "200" && tokenId.isNotEmpty) {
-        final sharedPreferences = await SharedPreferences.getInstance();
-        await sharedPreferences.setString('token', tokenId);
+        showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home()));
       }
     } catch (e) {
+      showErrorSnackbar(context, 'Username and password do not match.');
       log('Error during user login: $e');
     }
   }

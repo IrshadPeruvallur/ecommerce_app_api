@@ -41,6 +41,7 @@ dependencies:
   enefty_icons: ^1.0.7
   readmore: ^2.2.0
   shared_preferences: ^2.2.2
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:

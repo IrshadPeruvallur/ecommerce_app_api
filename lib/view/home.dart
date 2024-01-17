@@ -98,7 +98,7 @@ class Home extends StatelessWidget {
                             title: product.title ?? 'Unknown',
                             description: product.description ?? '',
                             imagepath: product.image ?? '',
-                            prize: product.price.toString() ?? '',
+                            prize: product.price.toString(),
                           );
                         },
                       ),

@@ -1,4 +1,3 @@
-import 'package:ecommerce_api/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_api/model/app_model.dart';
 import 'package:ecommerce_api/service/prodect_service.dart';

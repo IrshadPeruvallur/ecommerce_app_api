@@ -1,4 +1,6 @@
+import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 RectangularButton(Size size,
@@ -22,17 +24,34 @@ RectangularButton(Size size,
   );
 }
 
-Widget TextFieldWidget(size, {controller, label}) {
+Widget TextFieldWidget(
+  Size size, {
+  controller,
+  label,
+  TextInputFormatter? inputFormatter,
+  TextInputType? keyboardType,
+}) {
   return Column(
     children: [
       TextFormField(
-          controller: controller,
-          decoration: InputDecoration(
-            labelText: label,
-            labelStyle: TextStyle(color: Colors.black),
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)),
-          )),
+        inputFormatters: inputFormatter != null ? [inputFormatter] : [],
+        keyboardType: keyboardType ?? TextInputType.text,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return " Please enter $label";
+          } else {
+            return null;
+          }
+        },
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+        ),
+      ),
       SizedBox(
         height: size.width * .05,
       )
@@ -72,4 +91,30 @@ Widget TextButtonWidget(size, context,
         label,
         style: TextStyle(fontSize: size.width * .04, color: Colors.black),
       ));
+}
+
+void showSuccessSnackbar(BuildContext context, String message) {
+  final snackbar = SnackBar(
+    content: Text(message),
+    duration: Duration(seconds: 3),
+    backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+    behavior: SnackBarBehavior.floating,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+}
+
+void showErrorSnackbar(BuildContext context, String message) {
+  final snackbar = SnackBar(
+    content: Text(message),
+    duration: Duration(seconds: 3),
+    backgroundColor: Colors.red,
+    behavior: SnackBarBehavior.floating,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+}
+
+void clearControllers(UserProvider getProvider) {
+  getProvider.usernameController.clear();
+  getProvider.emailController.clear();
+  getProvider.passwordController.clear();
 }

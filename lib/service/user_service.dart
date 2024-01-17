@@ -1,18 +1,19 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
-import 'package:ecommerce_api/model/app_model.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
 
 class UserService {
   String? userStatusCode;
+  String? createdStatusCode;
   Dio dio = Dio();
 
   createUser(UserModel userInfo) async {
     final url = 'http://localhost:9000/api/users/register';
     try {
       Response response = await dio.post(url, data: userInfo.toJson());
+      createdStatusCode = response.statusCode.toString(); // Change this line
+
       if (response.statusCode == 201) {
         log('Account created');
       } else {
