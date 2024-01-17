@@ -3,6 +3,9 @@ import 'package:ecommerce_api/service/user_service.dart';
 import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   UserService _userService = UserService();
 
   String? userStatusCode;

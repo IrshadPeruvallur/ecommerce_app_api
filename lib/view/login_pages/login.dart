@@ -12,12 +12,12 @@ String tokenId = '';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final getProvider = Provider.of<UserProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -53,9 +53,11 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFieldWidget(size,
-                          label: 'Username', controller: usernameController),
+                          label: 'Username',
+                          controller: getProvider.usernameController),
                       TextFieldWidget(size,
-                          label: 'Password', controller: passwordController),
+                          label: 'Password',
+                          controller: getProvider.passwordController),
                       SizedBox(
                         height: size.width * .1,
                       ),
@@ -85,11 +87,11 @@ class LoginPage extends StatelessWidget {
   }
 
   userLogin(context) async {
+    final getProvider = await Provider.of<UserProvider>(context, listen: false);
     final userInfo = UserModel(
-      username: usernameController.text.toString(),
-      password: passwordController.text.toString(),
+      username: getProvider.usernameController.text.toString(),
+      password: getProvider.passwordController.text.toString(),
     );
-    final getProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
       await getProvider.userLogin(userInfo);

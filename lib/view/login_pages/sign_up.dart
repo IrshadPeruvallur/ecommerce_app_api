@@ -15,14 +15,10 @@ String? tokenId;
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});
 
-  TextEditingController usernameController = TextEditingController();
-
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    final getProvider = Provider.of<UserProvider>(context, listen: false);
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(),
@@ -53,11 +49,14 @@ class SignInPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFieldWidget(size,
-                          label: 'Name', controller: usernameController),
+                          label: 'Name',
+                          controller: getProvider.usernameController),
                       TextFieldWidget(size,
-                          label: 'Email', controller: emailController),
+                          label: 'Email',
+                          controller: getProvider.emailController),
                       TextFieldWidget(size,
-                          label: 'Password', controller: passwordController),
+                          label: 'Password',
+                          controller: getProvider.passwordController),
                       SizedBox(
                         height: size.width * .18,
                       ),
@@ -93,13 +92,14 @@ class SignInPage extends StatelessWidget {
   }
 
   createUser(context) async {
+    final getProvider = await Provider.of<UserProvider>(context, listen: false);
+
     final userInfo = await UserModel(
-      username: usernameController.text.toString(),
-      email: emailController.text.toString(),
-      password: passwordController.text.toString(),
+      username: getProvider.usernameController.text.toString(),
+      email: getProvider.emailController.text.toString(),
+      password: getProvider.passwordController.text.toString(),
     );
 
-    final getProvider = await Provider.of<UserProvider>(context, listen: false);
     await getProvider.createUser(userInfo);
     if (getProvider.createUser != null) {
       Navigator.pushReplacement(
