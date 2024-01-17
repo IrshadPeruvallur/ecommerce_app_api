@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String? token;
+String? tokenId;
 
 class SignInPage extends StatelessWidget {
   SignInPage({super.key});

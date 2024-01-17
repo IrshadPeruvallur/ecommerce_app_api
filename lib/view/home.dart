@@ -1,8 +1,10 @@
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/view/welcome/welcome.dart';
 import 'package:ecommerce_api/view/widgets/home_widget.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key});
@@ -22,7 +24,17 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        final _sharedPrfs =
+                            await SharedPreferences.getInstance();
+                        await _sharedPrfs.clear();
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Welcome(),
+                            ),
+                            (route) => false);
+                      },
                       icon: Icon(EneftyIcons.search_normal_2_outline)),
                   IconButton(
                       onPressed: () {}, icon: Icon(EneftyIcons.bag_2_outline))

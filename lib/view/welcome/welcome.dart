@@ -2,6 +2,7 @@ import 'package:ecommerce_api/view/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -47,13 +48,8 @@ class Welcome extends StatelessWidget {
                 child: RectangularButton(
                   size,
                   name: 'Get Started',
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ),
-                        (route) => false);
+                  onPressed: () async {
+                    await checkLogin(context);
                   },
                 ),
               ),
@@ -62,5 +58,25 @@ class Welcome extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  checkLogin(context) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final userLoggedIn = sharedPreferences.getString('token');
+    if (userLoggedIn == null || userLoggedIn.isEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Home(),
+        ),
+      );
+    }
   }
 }

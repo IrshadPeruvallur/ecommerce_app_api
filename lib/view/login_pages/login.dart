@@ -2,11 +2,16 @@ import 'dart:developer';
 
 import 'package:ecommerce_api/controller/data_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
+import 'package:ecommerce_api/service/api_service.dart';
 import 'package:ecommerce_api/view/home.dart';
 import 'package:ecommerce_api/view/login_pages/sign_up.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// String? tokenId;
+String tokenId = '';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -87,21 +92,19 @@ class LoginPage extends StatelessWidget {
       username: usernameController.text.toString(),
       password: passwordController.text.toString(),
     );
-
     final getProvider = Provider.of<DataProvider>(context, listen: false);
 
     try {
       await getProvider.userLogin(userInfo);
-      if (getProvider.userStatusCode == "200") {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return Home();
-          },
-        ));
+      log("Token : $tokenId");
+      if (getProvider.userStatusCode == "200" && tokenId.isNotEmpty) {
+        final sharedPreferences = await SharedPreferences.getInstance();
+        await sharedPreferences.setString('token', tokenId);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Home()));
       }
     } catch (e) {
       log('Error during user login: $e');
-      // Handle any additional logic or UI updates if needed
     }
   }
 }
