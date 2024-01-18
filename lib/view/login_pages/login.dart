@@ -110,6 +110,8 @@ class LoginPage extends StatelessWidget {
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => MainPage()));
+      } else if (getProvider.userStatusCode == '500') {
+        showErrorSnackbar(context, "no internet connction, try again");
       }
     } catch (e) {
       showErrorSnackbar(context, 'Username and password do not match.');

@@ -2,21 +2,33 @@ import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
-Widget topBarIcon(Size size, {required IconData icon}) {
-  return Container(
-    height: size.width * .15,
-    width: size.width * .15,
-    margin: EdgeInsets.only(right: 15),
-    padding: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      color: Colors.grey[300],
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Icon(
-      icon,
-      color: Colors.black,
-      size: size.width * 0.06,
-    ),
+Widget topBarIcon(Size size, {required IconData icon, title}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Container(
+        height: size.width * .15,
+        width: size.width * .15,
+        margin: EdgeInsets.only(right: 15),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(
+          icon,
+          color: Colors.black,
+          size: size.width * 0.06,
+        ),
+      ),
+      SizedBox(
+        width: size.width * .15,
+        child: Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+      )
+    ],
   );
 }
 
