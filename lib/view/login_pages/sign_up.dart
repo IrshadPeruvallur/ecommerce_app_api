@@ -12,8 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String? tokenId;
-
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
   final formKey = GlobalKey<FormState>();

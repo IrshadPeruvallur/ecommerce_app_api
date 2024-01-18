@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/store_provider.dart';
+import 'package:ecommerce_api/main.dart';
+import 'package:ecommerce_api/model/wishlist_model.dart';
 import 'package:ecommerce_api/view/welcome/welcome.dart';
 import 'package:ecommerce_api/view/widgets/home_widget.dart';
 import 'package:enefty_icons/enefty_icons.dart';
@@ -25,9 +30,11 @@ class Home extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () async {
-                        final _sharedPrfs =
-                            await SharedPreferences.getInstance();
-                        await _sharedPrfs.clear();
+                        await Provider.of<StoreProvider>(context, listen: false)
+                            .clearUserId();
+                        await Provider.of<StoreProvider>(context, listen: false)
+                            .clearToken();
+
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
@@ -37,7 +44,8 @@ class Home extends StatelessWidget {
                       },
                       icon: Icon(EneftyIcons.search_normal_2_outline)),
                   IconButton(
-                      onPressed: () {}, icon: Icon(EneftyIcons.bag_2_outline))
+                      onPressed: () async {},
+                      icon: Icon(EneftyIcons.bag_2_outline))
                 ],
               ),
               SizedBox(
@@ -81,8 +89,13 @@ class Home extends StatelessWidget {
                         itemCount: allProducts.length,
                         itemBuilder: (context, index) {
                           final product = allProducts[index];
+                          final wishProduct = WishListModel(
+                            id: product.id,
+                          );
                           return prodectShow(
                             size,
+                            context,
+                            product: wishProduct,
                             title: product.title ?? 'Unknown',
                             description: product.description ?? '',
                             imagepath: product.image ?? '',

@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
+import 'package:ecommerce_api/main.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/main_screen.dart';
 import 'package:ecommerce_api/view/tabs/home.dart';
@@ -8,8 +10,6 @@ import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-String tokenId = '';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -96,6 +96,7 @@ class LoginPage extends StatelessWidget {
 
   userLogin(context) async {
     final getProvider = await Provider.of<UserProvider>(context, listen: false);
+    final getStore = await Provider.of<StoreProvider>(context, listen: false);
     final userInfo = UserModel(
       username: getProvider.usernameController.text.toString(),
       password: getProvider.passwordController.text.toString(),
@@ -103,10 +104,12 @@ class LoginPage extends StatelessWidget {
 
     try {
       await getProvider.userLogin(userInfo);
+      final tokenId = getStore.getToken();
       log("Token : $tokenId");
-      if (getProvider.userStatusCode == "200" && tokenId.isNotEmpty) {
-        final sharedPreferences = await SharedPreferences.getInstance();
-        await sharedPreferences.setString('token', tokenId);
+      if (getProvider.userStatusCode == "200" && tokenId != null) {
+        // final sharedPreferences = await SharedPreferences.getInstance();
+        // await sharedPreferences.setString('token', tokenId);
+        // await sharedPreferences.setString('userId', userId);
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => MainPage()));

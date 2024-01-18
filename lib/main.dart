@@ -1,6 +1,8 @@
 import 'package:ecommerce_api/controller/bottom_provider.dart';
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
+import 'package:ecommerce_api/controller/wishlist_provider.dart';
 import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/welcome/welcome.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
+
+// String userId = '';
+// String tokenId = '';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key});
@@ -28,6 +33,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => BottomProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WishListProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => StoreProvider(),
         ),
       ],
       child: MaterialApp(

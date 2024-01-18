@@ -1,9 +1,10 @@
+import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/main_screen.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -62,9 +63,9 @@ class Welcome extends StatelessWidget {
   }
 
   checkLogin(context) async {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    final userLoggedIn = sharedPreferences.getString('token');
-    if (userLoggedIn == null || userLoggedIn.isEmpty) {
+    final userLoggedIn =
+        await Provider.of<StoreProvider>(context, listen: false).getToken();
+    if (userLoggedIn == null) {
       Navigator.push(
         context,
         MaterialPageRoute(

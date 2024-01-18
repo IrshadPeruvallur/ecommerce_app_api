@@ -1,6 +1,13 @@
+import 'dart:developer';
+
+import 'package:ecommerce_api/controller/store_provider.dart';
+import 'package:ecommerce_api/main.dart';
+import 'package:ecommerce_api/controller/wishlist_provider.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Widget topBarIcon(Size size, {required IconData icon, title}) {
   return Column(
@@ -32,8 +39,9 @@ Widget topBarIcon(Size size, {required IconData icon, title}) {
   );
 }
 
-Widget prodectShow(Size size,
-    {required String description,
+Widget prodectShow(Size size, context,
+    {required product,
+    required String description,
     required title,
     required String imagepath,
     required String prize}) {
@@ -50,7 +58,9 @@ Widget prodectShow(Size size,
                   icon: Icon(
                     EneftyIcons.bag_2_bold,
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    toWishList(context, product);
+                  },
                 ))
           ]),
           height: size.width * .40,
@@ -95,4 +105,16 @@ Widget prodectShow(Size size,
       ],
     ),
   );
+}
+
+Future toWishList(context, product) async {
+  final store = await Provider.of<StoreProvider>(context, listen: false);
+
+  final userId = await store.getUserId();
+  final token = await store.getToken();
+  // log(token);
+  // log(userId);
+
+  Provider.of<WishListProvider>(context, listen: false)
+      .addToWishList(product, userId, token);
 }
