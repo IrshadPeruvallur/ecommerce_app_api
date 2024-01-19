@@ -1,5 +1,6 @@
 import 'package:ecommerce_api/controller/bottom_provider.dart';
 import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/pages_controller/setting_page_controller.dart';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/controller/wishlist_provider.dart';
@@ -40,11 +41,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => StoreProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => SettingsProvider(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData(
             textTheme: TextTheme(
-              titleLarge: GoogleFonts.montserrat(fontWeight: FontWeight.w700),
+              titleLarge: GoogleFonts.yesevaOne(fontWeight: FontWeight.w700),
               bodyLarge: GoogleFonts.montserrat(),
               bodyMedium: GoogleFonts.montserrat(),
               displayLarge: GoogleFonts.montserrat(),

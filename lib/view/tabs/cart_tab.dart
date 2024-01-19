@@ -9,8 +9,6 @@ class CartTab extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {}, icon: Icon(EneftyIcons.search_normal_2_outline)),
         actions: [
           IconButton(
               onPressed: () {}, icon: Icon(EneftyIcons.shopping_cart_outline))
