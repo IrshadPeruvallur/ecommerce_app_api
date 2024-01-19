@@ -6,17 +6,17 @@ import 'package:ecommerce_api/model/wishlist_model.dart';
 class WishListService {
   Dio dio = Dio();
   addToWishList(WishListModel product, String userId, String token) async {
-    final url = 'http://localhost:9000/$userId/wishlists';
-    log(url);
-    log(token);
-    log('Product ID: ${product.id}');
+    final url = 'http://localhost:9000/api/users/$userId/wishlists';
 
     try {
       Response response = await dio.post(
         url,
         data: product.toWishList(token)['data'],
         options: Options(
-          headers: product.toWishList(token)['headers'],
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "bearer {$token}",
+          },
         ),
       );
 
@@ -24,8 +24,10 @@ class WishListService {
         log('Successful');
       } else {
         log('Unsuccessful. Status code: ${response.statusCode}');
+        log('Response data: ${response.data}');
       }
     } catch (e) {
+      log('Error: $e');
       throw e;
     }
   }

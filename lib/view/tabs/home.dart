@@ -1,15 +1,11 @@
-import 'dart:developer';
-
 import 'package:ecommerce_api/controller/data_provider.dart';
 import 'package:ecommerce_api/controller/store_provider.dart';
-import 'package:ecommerce_api/main.dart';
 import 'package:ecommerce_api/model/wishlist_model.dart';
 import 'package:ecommerce_api/view/welcome/welcome.dart';
 import 'package:ecommerce_api/view/widgets/home_widget.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key});
@@ -90,8 +86,11 @@ class Home extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final product = allProducts[index];
                           final wishProduct = WishListModel(
-                            id: product.id,
-                          );
+                              id: product.id,
+                              title: product.title,
+                              description: product.description,
+                              price: product.price,
+                              image: product.image);
                           return prodectShow(
                             size,
                             context,

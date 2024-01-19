@@ -38,6 +38,10 @@ class WishListTab extends StatelessWidget {
                                 height: size.width * .2,
                                 width: size.width * .2,
                                 decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/back.jpg'),
+                                        fit: BoxFit.cover),
                                     color: Colors.grey,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(15))),

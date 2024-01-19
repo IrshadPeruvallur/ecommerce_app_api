@@ -81,6 +81,12 @@ class LoginPage extends StatelessWidget {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SignUpPage(),
                           ));
+                        }),
+                        TextButtonWidget(size, context, label: 'Guest Mode',
+                            onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MainPage(),
+                          ));
                         })
                       ],
                     ),
@@ -95,8 +101,8 @@ class LoginPage extends StatelessWidget {
   }
 
   userLogin(context) async {
-    final getProvider = await Provider.of<UserProvider>(context, listen: false);
-    final getStore = await Provider.of<StoreProvider>(context, listen: false);
+    final getProvider = Provider.of<UserProvider>(context, listen: false);
+    final getStore = Provider.of<StoreProvider>(context, listen: false);
     final userInfo = UserModel(
       username: getProvider.usernameController.text.toString(),
       password: getProvider.passwordController.text.toString(),
@@ -105,11 +111,7 @@ class LoginPage extends StatelessWidget {
     try {
       await getProvider.userLogin(userInfo);
       final tokenId = getStore.getToken();
-      log("Token : $tokenId");
       if (getProvider.userStatusCode == "200" && tokenId != null) {
-        // final sharedPreferences = await SharedPreferences.getInstance();
-        // await sharedPreferences.setString('token', tokenId);
-        // await sharedPreferences.setString('userId', userId);
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => MainPage()));
