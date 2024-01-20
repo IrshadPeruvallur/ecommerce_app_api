@@ -113,8 +113,8 @@ void showErrorSnackbar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(snackbar);
 }
 
-void clearControllers(UserProvider getProvider) {
-  getProvider.usernameController.clear();
-  getProvider.emailController.clear();
-  getProvider.passwordController.clear();
+void clearControllers(UserProvider controller) {
+  controller.usernameController.clear();
+  controller.emailController.clear();
+  controller.passwordController.clear();
 }

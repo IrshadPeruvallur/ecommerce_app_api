@@ -67,7 +67,7 @@ class Welcome extends StatelessWidget {
     final getProvider = Provider.of<UserProvider>(context, listen: false);
     final userLoggedIn =
         await Provider.of<StoreProvider>(context, listen: false)
-            .getToken('tokenId');
+            .getValues('tokenId');
     if (userLoggedIn == null) {
       Navigator.push(
         context,

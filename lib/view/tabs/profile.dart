@@ -150,8 +150,7 @@ class ProfileTab extends StatelessWidget {
 
   Future<void> logOut(context) async {
     final getProvider = Provider.of<StoreProvider>(context, listen: false);
-    getProvider.clearUserId();
-    getProvider.clearToken();
+    getProvider.clearValues();
     showDialog(
       context: context,
       builder: (BuildContext context) {

@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
                       onPressed: () async {
                         final getStore =
                             Provider.of<StoreProvider>(context, listen: false);
-                        final tokenId = await getStore.getToken('userId');
+                        final tokenId = await getStore.getValues('userId');
                         log(tokenId.toString());
                       },
                       icon: Icon(EneftyIcons.search_normal_2_outline)),

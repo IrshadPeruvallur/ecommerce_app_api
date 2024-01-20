@@ -110,8 +110,8 @@ Widget prodectShow(Size size, context,
 Future toWishList(context, product) async {
   final store = await Provider.of<StoreProvider>(context, listen: false);
 
-  final userId = await store.getUserId();
-  final token = await store.getToken('tokenId');
+  final userId = await store.getValues('userId');
+  final token = await store.getValues('tokenId');
   // log(token);
   // log(userId);
 
