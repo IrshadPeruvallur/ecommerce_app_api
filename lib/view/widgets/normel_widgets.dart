@@ -72,7 +72,8 @@ Widget BlackElevatedButton(size, {required label, VoidCallback? onPressed}) {
         },
         child: Text(
           label,
-          style: TextStyle(
+          style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.w700,
               fontSize: size.width * .045,
               color: const Color.fromARGB(255, 255, 255, 255)),
         )),

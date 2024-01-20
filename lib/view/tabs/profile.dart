@@ -4,7 +4,7 @@ import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/blank_page.dart';
-import 'package:ecommerce_api/view/tabs/cart_tab.dart';
+import 'package:ecommerce_api/view/pages/cart_page.dart';
 import 'package:ecommerce_api/view/tabs/profile_pages/settings.dart';
 import 'package:ecommerce_api/view/tabs/wishlist_tab.dart';
 import 'package:ecommerce_api/view/welcome/welcome.dart';
@@ -39,7 +39,7 @@ class ProfileTab extends StatelessWidget {
       name: 'SHIPPING ADRESS',
     ),
     WishListTab(),
-    CartTab(),
+    CartPage(),
     SettingsPage(),
   ];
 

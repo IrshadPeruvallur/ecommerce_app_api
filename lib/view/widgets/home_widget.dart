@@ -40,35 +40,35 @@ Widget topBarIcon(Size size, {required IconData icon, title}) {
 }
 
 Widget prodectShow(Size size, context,
-    {required product,
-    required String description,
-    required title,
-    required String imagepath,
-    required String prize}) {
+    {product, required title, required imagepath, required prize}) {
   return SingleChildScrollView(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          child: Stack(children: [
-            Positioned(
-                top: 1,
-                right: .1,
-                child: IconButton(
-                  icon: Icon(
-                    EneftyIcons.bag_2_bold,
-                  ),
-                  onPressed: () async {
-                    toWishList(context, product);
-                  },
-                ))
-          ]),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color.fromARGB(192, 255, 255, 255)),
+              child: IconButton(
+                icon: Icon(
+                  EneftyIcons.bag_2_outline,
+                ),
+                onPressed: () async {
+                  toWishList(context, product);
+                },
+              ),
+            ),
+          ),
           height: size.width * .40,
           width: size.width * .35,
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(imagepath), fit: BoxFit.cover),
+            image: DecorationImage(image: imagepath, fit: BoxFit.cover),
             color: Colors.grey[200],
             borderRadius: BorderRadius.circular(15),
           ),
@@ -87,19 +87,9 @@ Widget prodectShow(Size size, context,
               trimExpandedText: "Show less",
               title),
         ),
-        // SizedBox(
-        //   width: size.width * .35,
-        //   child: ReadMoreText(
-        //       style: TextStyle(fontSize: 10),
-        //       trimLines: 2,
-        //       trimMode: TrimMode.Line,
-        //       trimCollapsedText: "Show more",
-        //       trimExpandedText: "Show less",
-        //       description),
-        // ),
         SizedBox(height: 5),
         Text(
-          '\$$prize',
+          '₹$prize',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
@@ -109,12 +99,10 @@ Widget prodectShow(Size size, context,
 
 Future toWishList(context, product) async {
   final store = await Provider.of<StoreProvider>(context, listen: false);
-
   final userId = await store.getValues('userId');
   final token = await store.getValues('tokenId');
   // log(token);
   // log(userId);
-
   Provider.of<WishListProvider>(context, listen: false)
       .addToWishList(product, userId, token);
 }

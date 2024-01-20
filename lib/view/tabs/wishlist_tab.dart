@@ -1,3 +1,4 @@
+import 'package:ecommerce_api/view/pages/cart_page.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,14 @@ class WishListTab extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {}, icon: Icon(EneftyIcons.shopping_cart_outline))
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CartPage(),
+                    ));
+              },
+              icon: Icon(EneftyIcons.bag_2_outline))
         ],
       ),
       body: Padding(
@@ -57,13 +65,13 @@ class WishListTab extends StatelessWidget {
                                     Text(
                                       'Prodect Name',
                                       style: TextStyle(
-                                          fontSize: size.width * 0.025,
+                                          fontSize: size.width * 0.04,
                                           fontWeight: FontWeight.w700),
                                     ),
                                     Text(
                                       '₹ 1999',
                                       style: TextStyle(
-                                          fontSize: size.width * 0.03,
+                                          fontSize: size.width * 0.04,
                                           fontWeight: FontWeight.w900),
                                     ),
                                   ],
@@ -71,17 +79,12 @@ class WishListTab extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(EneftyIcons.close_circle_outline)),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(EneftyIcons.shopping_bag_outline)),
-                            ],
-                          )
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                EneftyIcons.close_circle_outline,
+                                size: size.width * .06,
+                              ))
                         ],
                       ),
                     ),

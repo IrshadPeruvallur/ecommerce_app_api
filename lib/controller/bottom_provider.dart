@@ -1,5 +1,5 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
-import 'package:ecommerce_api/view/tabs/cart_tab.dart';
+import 'package:ecommerce_api/view/pages/cart_page.dart';
 import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/tabs/profile.dart';
 import 'package:ecommerce_api/view/tabs/wishlist_tab.dart';
@@ -12,10 +12,10 @@ class BottomProvider extends ChangeNotifier {
       icon: Icon(Icons.home),
       selectedColor: Color(0xff73544C),
     ),
-    DotNavigationBarItem(
-      icon: Icon(Icons.shopping_cart),
-      selectedColor: Color(0xff73544C),
-    ),
+    // DotNavigationBarItem(
+    //   icon: Icon(Icons.shopping_cart),
+    //   selectedColor: Color(0xff73544C),
+    // ),
     DotNavigationBarItem(
       icon: Icon(Icons.favorite),
       selectedColor: Color(0xff73544C),
@@ -27,7 +27,7 @@ class BottomProvider extends ChangeNotifier {
   ];
   final List tabs = [
     Home(),
-    CartTab(),
+    // CartTab(),
     WishListTab(),
     ProfileTab(),
   ];
