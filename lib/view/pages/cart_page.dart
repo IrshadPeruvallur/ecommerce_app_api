@@ -10,10 +10,8 @@ class CartPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: Icon(EneftyIcons.shopping_cart_outline))
-        ],
+        centerTitle: true,
+        title: Text('My Cart'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

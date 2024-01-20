@@ -10,6 +10,8 @@ class WishListTab extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        title: Text('Wishlist'),
         actions: [
           IconButton(
               onPressed: () {
