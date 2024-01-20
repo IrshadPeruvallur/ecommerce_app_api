@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 class StoreProvider extends ChangeNotifier {
   StoreService store = StoreService();
-  setToken(tokenId) async {
-    await store.setToken(tokenId);
+  setToken(key, tokenId) async {
+    await store.setKeys(key, tokenId);
     notifyListeners();
   }
 
-  getToken() async {
-    return store.getToken();
+  getToken(key) async {
+    return store.getValues(key);
   }
 
   clearToken() async {
-    await store.clearToken();
+    await store.clearValues();
     notifyListeners();
   }
 

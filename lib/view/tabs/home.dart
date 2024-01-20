@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerce_api/controller/data_provider.dart';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/model/wishlist_model.dart';
@@ -26,17 +28,10 @@ class Home extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () async {
-                        await Provider.of<StoreProvider>(context, listen: false)
-                            .clearUserId();
-                        await Provider.of<StoreProvider>(context, listen: false)
-                            .clearToken();
-
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Welcome(),
-                            ),
-                            (route) => false);
+                        final getStore =
+                            Provider.of<StoreProvider>(context, listen: false);
+                        final tokenId = await getStore.getToken('userId');
+                        log(tokenId.toString());
                       },
                       icon: Icon(EneftyIcons.search_normal_2_outline)),
                   IconButton(

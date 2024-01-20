@@ -1,17 +1,17 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreService {
-  setToken(tokenId) async {
+  setKeys(key, value) async {
     final sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('token', tokenId);
+    await sharedPreferences.setString(key, value);
   }
 
-  getToken() async {
+  getValues(key) async {
     final sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString('token');
+    return sharedPreferences.getString(key);
   }
 
-  clearToken() async {
+  clearValues() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
   }

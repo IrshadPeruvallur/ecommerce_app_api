@@ -1,4 +1,5 @@
 import 'package:ecommerce_api/controller/pages_controller/setting_page_controller.dart';
+import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/view/blank_page.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
@@ -57,19 +58,24 @@ class SettingsPage extends StatelessWidget {
                   )
                 ],
               ),
-              Consumer<SettingsProvider>(builder: (context, value, child) {
+              Consumer2<SettingsProvider, UserProvider>(
+                  builder: (context, value, user, child) {
                 return textFormFieldBox(
-                    value.isUsernameEdit, size, "Irshad", 'Username');
+                    value.isUsernameEdit,
+                    size,
+                    user.username.isEmpty ? 'username' : user.username,
+                    'Username');
               }),
               SizedBox(
                 height: size.width * .05,
               ),
-              Consumer<SettingsProvider>(builder: (context, value, child) {
+              Consumer2<SettingsProvider, UserProvider>(
+                  builder: (context, value, user, child) {
                 return textFormFieldBox(
                   value.isUsernameEdit,
                   size,
-                  'irshadpukayoor@gmail.com',
-                  'Username',
+                  user.email.isEmpty ? 'email' : user.email,
+                  'email',
                 );
               }),
               SizedBox(

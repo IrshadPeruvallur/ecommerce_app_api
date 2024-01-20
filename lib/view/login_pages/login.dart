@@ -110,8 +110,9 @@ class LoginPage extends StatelessWidget {
 
     try {
       await getProvider.userLogin(userInfo);
-      final tokenId = getStore.getToken();
+      final tokenId = await getStore.getToken('tokenId');
       if (getProvider.userStatusCode == "200" && tokenId != null) {
+        await getProvider.setUserData();
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => MainPage()));

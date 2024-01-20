@@ -1,4 +1,5 @@
 import 'package:ecommerce_api/controller/store_provider.dart';
+import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/main_screen.dart';
@@ -63,8 +64,10 @@ class Welcome extends StatelessWidget {
   }
 
   checkLogin(context) async {
+    final getProvider = Provider.of<UserProvider>(context, listen: false);
     final userLoggedIn =
-        await Provider.of<StoreProvider>(context, listen: false).getToken();
+        await Provider.of<StoreProvider>(context, listen: false)
+            .getToken('tokenId');
     if (userLoggedIn == null) {
       Navigator.push(
         context,
@@ -73,6 +76,7 @@ class Welcome extends StatelessWidget {
         ),
       );
     } else {
+      await getProvider.setUserData();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

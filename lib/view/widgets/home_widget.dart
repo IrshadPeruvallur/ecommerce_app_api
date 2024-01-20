@@ -111,7 +111,7 @@ Future toWishList(context, product) async {
   final store = await Provider.of<StoreProvider>(context, listen: false);
 
   final userId = await store.getUserId();
-  final token = await store.getToken();
+  final token = await store.getToken('tokenId');
   // log(token);
   // log(userId);
 

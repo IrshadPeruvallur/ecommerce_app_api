@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:ecommerce_api/controller/store_provider.dart';
+import 'package:ecommerce_api/controller/user_provider.dart';
+import 'package:ecommerce_api/model/user_model.dart';
+import 'package:ecommerce_api/view/blank_page.dart';
 import 'package:ecommerce_api/view/tabs/cart_tab.dart';
 import 'package:ecommerce_api/view/tabs/profile_pages/settings.dart';
 import 'package:ecommerce_api/view/tabs/wishlist_tab.dart';
@@ -11,6 +16,7 @@ import 'package:provider/provider.dart';
 
 class ProfileTab extends StatelessWidget {
   ProfileTab({super.key});
+
   final List listTitles = [
     'my orders',
     'shipping adress',
@@ -18,6 +24,7 @@ class ProfileTab extends StatelessWidget {
     'cart',
     'settings',
   ];
+
   final List listSubTitles = [
     'Already have 10 orders',
     '03 Addresses',
@@ -25,13 +32,21 @@ class ProfileTab extends StatelessWidget {
     'You have 2 carts',
     'Notification, Password, FAQ, Contact',
   ];
+
   final List<Widget> listTabs = [
-    SettingsPage(),
-    SettingsPage(),
+    BlankPage(name: 'MY ORDERS'),
+    BlankPage(
+      name: 'SHIPPING ADRESS',
+    ),
     WishListTab(),
     CartTab(),
     SettingsPage(),
   ];
+
+  String? username;
+
+  String? email;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,20 +80,26 @@ class ProfileTab extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "irshad".toUpperCase(),
-                      style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.bold,
-                        fontSize: size.width * .05,
-                      ),
-                    ),
-                    Text(
-                      "irshadpukayoor@gmail.com",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: size.width * .035,
-                      ),
-                    )
+                    Consumer<UserProvider>(builder: (context, value, child) {
+                      return Text(
+                        value.username.isEmpty
+                            ? 'username'
+                            : value.username.toUpperCase(),
+                        style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.bold,
+                          fontSize: size.width * .05,
+                        ),
+                      );
+                    }),
+                    Consumer<UserProvider>(builder: (context, value, child) {
+                      return Text(
+                        value.email.isEmpty ? 'email' : value.email,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: size.width * .035,
+                        ),
+                      );
+                    })
                   ],
                 ),
               ],
@@ -153,4 +174,13 @@ class ProfileTab extends StatelessWidget {
 
     showSuccessSnackbar(context, 'Log out Successfully');
   }
+
+  // Future<void> getUserData(context) async {
+  //   final getStore = Provider.of<StoreProvider>(context, listen: false);
+  //   final username = await getStore.getToken('username');
+  //   final email = await getStore.getToken('email');
+  //   log(username);
+
+  //   // UserModel(username: username, email: email);
+  // }
 }

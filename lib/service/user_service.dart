@@ -39,9 +39,14 @@ class UserService {
         log('User Logged in');
         final tokenId = response.data['token'];
         final userId = response.data['user']['_id'];
+        final username = response.data['user']['username'];
+        final email = response.data['user']['email'];
 
-        store.setToken(tokenId);
-        store.setUserId(userId);
+        store.setKeys('tokenId', tokenId);
+        store.setKeys('userId', userId);
+        store.setKeys('username', username);
+        store.setKeys('email', email);
+        // store.setUserId(userId);+-
       } else if (response.statusCode == 500) {
         log('User login failed');
         return null;
