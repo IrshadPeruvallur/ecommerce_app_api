@@ -22,7 +22,6 @@ class MainPage extends StatelessWidget {
           currentIndex: getProvider.currentIndex,
           dotIndicatorColor: Colors.grey[300],
           unselectedItemColor: Colors.grey[300],
-          // splashBorderRadius: 50,
           items: getProvider.items),
     );
   }

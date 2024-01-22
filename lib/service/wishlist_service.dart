@@ -13,10 +13,7 @@ class WishListService {
         url,
         data: product.toWishList(token)['data'],
         options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "bearer {$token}",
-          },
+          headers: product.toWishList(token)['headers'],
         ),
       );
 

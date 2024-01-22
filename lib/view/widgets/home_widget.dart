@@ -59,7 +59,10 @@ Widget prodectShow(Size size, context,
                   EneftyIcons.bag_2_outline,
                 ),
                 onPressed: () async {
-                  toWishList(context, product);
+                  toWishList(
+                      context,
+                      product
+                          .id); // Pass product.id instead of the entire product
                 },
               ),
             ),

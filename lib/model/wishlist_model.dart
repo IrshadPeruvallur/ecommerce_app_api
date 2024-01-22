@@ -15,7 +15,7 @@ class WishListModel {
 
   Map<String, dynamic> toWishList(String token) {
     final Map<String, dynamic> data = {'product': id};
-    final Map<String, String> headers = {'Authorization': "bearer {$token}"};
+    final Map<String, String> headers = {'Authorization': "bearer $token"};
     return {'data': data, 'headers': headers};
   }
 }
