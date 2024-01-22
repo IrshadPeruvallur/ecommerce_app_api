@@ -18,7 +18,7 @@ class ProductDetails extends StatelessWidget {
       body: SizedBox(
         height: size.height * 1,
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: Stack(
             children: [
               SingleChildScrollView(
@@ -142,52 +142,55 @@ class ProductDetails extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 20,
-                right: 5,
-                left: 5,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: size.width * .14,
-                      width: size.width * .2,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          elevation:
-                              MaterialStateProperty.all(size.width * .07),
-                          foregroundColor: MaterialStateProperty.all(
-                              Color.fromARGB(255, 0, 0, 0)),
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color.fromARGB(255, 234, 234, 234)),
-                        ),
-                        onPressed: () {},
-                        child: Icon(
-                          EneftyIcons.heart_outline,
-                          size: size.width * .06,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.width * .14,
-                      width: size.width * .6,
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          elevation:
-                              MaterialStateProperty.all(size.width * .07),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.black),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          'Add To Cart',
-                          style: TextStyle(
-                            fontSize: size.width * .045,
-                            color: const Color.fromARGB(255, 255, 255, 255),
+                bottom: 0,
+                right: 0,
+                left: 0,
+                child: Container(
+                  color: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: size.height * .07,
+                        width: size.width * .2,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.all(size.width * .07),
+                            foregroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 0, 0, 0)),
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color.fromARGB(255, 234, 234, 234)),
+                          ),
+                          onPressed: () {},
+                          child: Icon(
+                            EneftyIcons.heart_outline,
+                            size: size.height * .04,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: size.height * .07,
+                        width: size.width * .6,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            elevation:
+                                MaterialStateProperty.all(size.width * .07),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.black),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'Add To Cart',
+                            style: TextStyle(
+                              fontSize: size.width * .045,
+                              color: const Color.fromARGB(255, 255, 255, 255),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
