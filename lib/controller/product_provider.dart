@@ -3,7 +3,7 @@ import 'package:ecommerce_api/model/product_model.dart';
 import 'package:ecommerce_api/service/prodect_service.dart';
 
 class ProductProvider extends ChangeNotifier {
-  ApiService _apiService = ApiService();
+  ProductService _apiService = ProductService();
   List<ProductModel> prodectList = [];
 
   getData() async {

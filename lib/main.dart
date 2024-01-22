@@ -1,6 +1,7 @@
 import 'package:ecommerce_api/controller/bottom_provider.dart';
-import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/product_provider.dart';
 import 'package:ecommerce_api/controller/pages_controller/setting_page_controller.dart';
+import 'package:ecommerce_api/controller/search_provider.dart';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/controller/wishlist_provider.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => SettingsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SearchProvider(),
         ),
       ],
       child: MaterialApp(

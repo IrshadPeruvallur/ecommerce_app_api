@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:ecommerce_api/controller/data_provider.dart';
+import 'package:ecommerce_api/controller/product_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/tabs/home.dart';

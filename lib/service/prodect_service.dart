@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_api/model/product_model.dart';
 
-class ApiService {
+class ProductService {
   Dio dio = Dio();
   Future<List<ProductModel>> getData() async {
     final url = 'http://localhost:9000/api/users/products';
