@@ -89,7 +89,7 @@ Widget prodectShow(Size size, context,
         ),
         SizedBox(height: 5),
         Text(
-          '₹$prize',
+          '$prize',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
