@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/main.dart';
 import 'package:ecommerce_api/controller/wishlist_provider.dart';
+import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -104,10 +105,16 @@ Future toWishList(context, product) async {
   final store = await Provider.of<StoreProvider>(context, listen: false);
   final userId = await store.getValues('userId');
   final token = await store.getValues('tokenId');
-  // log(token);
-  // log(userId);
-  Provider.of<WishListProvider>(context, listen: false)
-      .addToWishList(product, userId, token);
-  // Provider.of<WishListProvider>(context, listen: false)
-  //     .getWishListProduct(userId, token);
+  final wishProvider = Provider.of<WishListProvider>(context, listen: false);
+
+  if (userId != null && token != null) {
+    wishProvider.addToWishList(product, userId, token);
+    if (wishProvider.wishListStatuscode == '200') {
+      showSuccessSnackbar(context, "Product added to Wishlist");
+    } else if (wishProvider.wishListStatuscode == '500') {
+      showErrorSnackbar(context, 'Product already in wishlist');
+    }
+  } else {
+    showErrorSnackbar(context, 'Your are not loged in ');
+  }
 }

@@ -5,6 +5,7 @@ import 'package:ecommerce_api/model/wishlist_model.dart';
 
 class WishListService {
   Dio dio = Dio();
+  String? wishListStatuscode;
   addToWishList(WishListModel product, String userId, String token) async {
     final url = 'http://localhost:9000/api/users/$userId/wishlists';
 
@@ -18,14 +19,15 @@ class WishListService {
       );
 
       if (response.statusCode == 200) {
+        wishListStatuscode = '200';
         log('Product added to WishList');
-      } else {
+      } else if (response.statusCode == 500) {
         log('Unsuccessful. Status code: ${response.statusCode}');
         log('Response data: ${response.data}');
       }
     } catch (e) {
-      log('Error: $e');
-      throw e;
+      log('ErrorFromToWishList: $e');
+      wishListStatuscode = '500';
     }
   }
 

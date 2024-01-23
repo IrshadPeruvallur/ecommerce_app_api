@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 class WishListProvider extends ChangeNotifier {
   WishListService _wishListService = WishListService();
   List wishListItemId = [];
+  String? wishListStatuscode;
   Future<void> addToWishList(
       String productId, String userId, String token) async {
     final product = WishListModel(id: productId);
     await _wishListService.addToWishList(product, userId, token);
+
+    wishListStatuscode = _wishListService.wishListStatuscode;
     notifyListeners();
   }
 
