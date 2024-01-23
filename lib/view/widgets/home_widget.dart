@@ -108,4 +108,6 @@ Future toWishList(context, product) async {
   // log(userId);
   Provider.of<WishListProvider>(context, listen: false)
       .addToWishList(product, userId, token);
+  // Provider.of<WishListProvider>(context, listen: false)
+  //     .getWishListProduct(userId, token);
 }

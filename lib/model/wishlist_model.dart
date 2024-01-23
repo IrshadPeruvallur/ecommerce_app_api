@@ -1,21 +1,19 @@
 class WishListModel {
   String? id;
-  String? title;
-  String? description;
-  int? price;
-  String? image;
 
   WishListModel({
-    this.title,
     this.id,
-    this.description,
-    this.image,
-    this.price,
   });
 
-  Map<String, dynamic> toWishList(String token) {
+  Map<String, dynamic> toJson(String token) {
     final Map<String, dynamic> data = {'product': id};
     final Map<String, String> headers = {'Authorization': "bearer $token"};
     return {'data': data, 'headers': headers};
+  }
+
+  factory WishListModel.fromJson(Map<String, dynamic> json) {
+    return WishListModel(
+      id: json['data']['getWishList']['product'],
+    );
   }
 }

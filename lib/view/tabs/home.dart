@@ -96,11 +96,8 @@ class Home extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final product = allProducts[index];
                             final wishProduct = WishListModel(
-                                id: product.id,
-                                title: product.title,
-                                description: product.description,
-                                price: product.price,
-                                image: product.image);
+                              id: product.id,
+                            );
 
                             return GestureDetector(
                               onTap: () => Navigator.push(
