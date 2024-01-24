@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchProvider extends ChangeNotifier {
-  ProductService _productService = ProductService();
+  ProductService productService = ProductService();
   TextEditingController searchController = TextEditingController();
   List<ProductModel> searchedList = [];
   loadProducts() async {
-    final allData = await _productService.getData();
+    final allData = await productService.getData();
     searchedList = allData;
     notifyListeners();
   }

@@ -1,16 +1,9 @@
-import 'dart:developer';
-
-import 'package:ecommerce_api/controller/product_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
 import 'package:ecommerce_api/model/user_model.dart';
-import 'package:ecommerce_api/view/tabs/home.dart';
-import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
@@ -50,7 +43,7 @@ class SignUpPage extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: [
-                        TextFieldWidget(
+                        textFieldWidget(
                           size,
                           label: 'Name',
                           controller: getProvider.usernameController,
@@ -68,7 +61,7 @@ class SignUpPage extends StatelessWidget {
                             }
                           },
                           controller: getProvider.emailController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Email",
                             labelStyle: TextStyle(color: Colors.black),
                             focusedBorder: UnderlineInputBorder(
@@ -76,7 +69,7 @@ class SignUpPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        TextFieldWidget(
+                        textFieldWidget(
                           size,
                           label: 'Password',
                           controller: getProvider.passwordController,
@@ -84,7 +77,7 @@ class SignUpPage extends StatelessWidget {
                         SizedBox(
                           height: size.width * .18,
                         ),
-                        BlackElevatedButton(size, label: 'Sign Up',
+                        blackElevatedButton(size, label: 'Sign Up',
                             onPressed: () async {
                           if (formKey.currentState!.validate()) {
                             await createUser(context);
@@ -100,8 +93,8 @@ class SignUpPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Already have account?'),
-                            TextButtonWidget(size, context, label: 'SIGN IN',
+                            const Text('Already have account?'),
+                            textButtonWidget(size, context, label: 'SIGN IN',
                                 onPressed: () {
                               Navigator.pop(context);
                             })
@@ -121,7 +114,7 @@ class SignUpPage extends StatelessWidget {
 
   createUser(context) async {
     final getProvider = Provider.of<UserProvider>(context, listen: false);
-    final userInfo = await UserModel(
+    final userInfo = UserModel(
       username: getProvider.usernameController.text.toString(),
       email: getProvider.emailController.text.toString(),
       password: getProvider.passwordController.text.toString(),

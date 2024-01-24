@@ -1,6 +1,5 @@
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
-import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/login.dart';
 import 'package:ecommerce_api/view/main_screen.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
@@ -17,7 +16,7 @@ class Welcome extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/Background.jpg'),
             fit: BoxFit.cover,
@@ -33,14 +32,14 @@ class Welcome extends StatelessWidget {
                   SizedBox(
                     height: size.height * .4,
                   ),
-                  Text(
+                  const Text(
                     'MAKE YOUR',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                   ),
-                  Text('HOME BEAUTIFUL',
+                  const Text('HOME BEAUTIFUL',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.w900)),
-                  Text(
+                  const Text(
                       'The best simple place where you discover most wonderful furnitures and make your home beautiful'),
                 ],
               ),
@@ -80,7 +79,7 @@ class Welcome extends StatelessWidget {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MainPage(),
+          builder: (context) => const MainPage(),
         ),
       );
     }

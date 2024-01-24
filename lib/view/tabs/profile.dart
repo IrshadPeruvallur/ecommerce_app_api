@@ -1,8 +1,8 @@
-import 'dart:developer';
+// ignore_for_file: must_be_immutable
 
+import 'package:ecommerce_api/controller/bottom_provider.dart';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
-import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/blank_page.dart';
 import 'package:ecommerce_api/view/pages/cart_page.dart';
 import 'package:ecommerce_api/view/tabs/profile_pages/settings.dart';
@@ -34,13 +34,13 @@ class ProfileTab extends StatelessWidget {
   ];
 
   final List<Widget> listTabs = [
-    BlankPage(name: 'MY ORDERS'),
-    BlankPage(
+    const BlankPage(name: 'MY ORDERS'),
+    const BlankPage(
       name: 'SHIPPING ADRESS',
     ),
-    WishListTab(),
-    CartPage(),
-    SettingsPage(),
+    const WishListTab(),
+    const CartPage(),
+    const SettingsPage(),
   ];
 
   String? username;
@@ -172,14 +172,9 @@ class ProfileTab extends StatelessWidget {
         (route) => false);
 
     showSuccessSnackbar(context, 'Log out Successfully');
+    Provider.of<BottomProvider>(
+      context,
+      listen: false,
+    ).bottomFunction(0);
   }
-
-  // Future<void> getUserData(context) async {
-  //   final getStore = Provider.of<StoreProvider>(context, listen: false);
-  //   final username = await getStore.getToken('username');
-  //   final email = await getStore.getToken('email');
-  //   log(username);
-
-  //   // UserModel(username: username, email: email);
-  // }
 }

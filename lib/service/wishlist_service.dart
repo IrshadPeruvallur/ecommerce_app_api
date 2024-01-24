@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_api/model/product_model.dart';
 import 'package:ecommerce_api/model/wishlist_model.dart';
 
 class WishListService {

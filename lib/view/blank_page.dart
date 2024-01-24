@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BlankPage extends StatelessWidget {
-  BlankPage({super.key, required this.name});
+  const BlankPage({super.key, required this.name});
   final String name;
 
   @override

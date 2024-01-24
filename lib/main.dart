@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:ecommerce_api/controller/bottom_provider.dart';
 import 'package:ecommerce_api/controller/product_provider.dart';
 import 'package:ecommerce_api/controller/pages_controller/setting_page_controller.dart';
@@ -12,7 +14,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -53,13 +55,13 @@ class MyApp extends StatelessWidget {
               displayLarge: GoogleFonts.montserrat(),
               displayMedium: GoogleFonts.montserrat(),
             ),
-            colorScheme: ColorScheme.light(),
-            appBarTheme: AppBarTheme(
+            colorScheme: const ColorScheme.light(),
+            appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.black,
                 elevation: 0)),
         debugShowCheckedModeBanner: false,
-        home: Welcome(),
+        home: const Welcome(),
       ),
     );
   }

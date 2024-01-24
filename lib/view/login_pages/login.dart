@@ -1,15 +1,12 @@
 import 'dart:developer';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/user_provider.dart';
-import 'package:ecommerce_api/main.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/view/main_screen.dart';
-import 'package:ecommerce_api/view/tabs/home.dart';
 import 'package:ecommerce_api/view/login_pages/sign_up.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -55,16 +52,16 @@ class LoginPage extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: [
-                        TextFieldWidget(size,
+                        textFieldWidget(size,
                             label: 'Username',
                             controller: getProvider.usernameController),
-                        TextFieldWidget(size,
+                        textFieldWidget(size,
                             label: 'Password',
                             controller: getProvider.passwordController),
                         SizedBox(
                           height: size.width * .1,
                         ),
-                        BlackElevatedButton(
+                        blackElevatedButton(
                           size,
                           label: 'Log in',
                           onPressed: () {
@@ -76,16 +73,16 @@ class LoginPage extends StatelessWidget {
                         SizedBox(
                           height: size.width * .1,
                         ),
-                        TextButtonWidget(size, context, label: 'SIGN UP',
+                        textButtonWidget(size, context, label: 'SIGN UP',
                             onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => SignUpPage(),
                           ));
                         }),
-                        TextButtonWidget(size, context, label: 'Guest Mode',
+                        textButtonWidget(size, context, label: 'Guest Mode',
                             onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MainPage(),
+                            builder: (context) => const MainPage(),
                           ));
                         })
                       ],
@@ -116,7 +113,7 @@ class LoginPage extends StatelessWidget {
         clearControllers(getProvider);
         showSuccessSnackbar(context, 'Successfully logged in!');
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MainPage()));
+            context, MaterialPageRoute(builder: (context) => const MainPage()));
       } else if (getProvider.userStatusCode == '500') {
         showErrorSnackbar(context, "no internet connction, try again");
       }

@@ -1,4 +1,4 @@
-import 'package:ecommerce_api/view/widgets/home_widget.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +8,7 @@ class ProductDetails extends StatelessWidget {
   final description;
   final price;
   final image;
-  ProductDetails(
+  const ProductDetails(
       {super.key, this.title, this.description, this.price, this.image});
 
   @override
@@ -26,6 +26,17 @@ class ProductDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: image ??
+                                  const AssetImage('assets/images/dummy.jpg'),
+                              fit: BoxFit.cover),
+                          borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(50),
+                              bottomRight: Radius.circular(50)),
+                          color: Colors.amber),
+                      width: double.infinity,
+                      height: size.height * .5,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 30, left: 20),
                         child: Align(
@@ -35,9 +46,10 @@ class ProductDetails extends StatelessWidget {
                             height: 50,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                color: Color.fromARGB(163, 255, 255, 255)),
+                                color:
+                                    const Color.fromARGB(163, 255, 255, 255)),
                             child: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.arrow_back_ios_new,
                                 size: 20,
                               ),
@@ -48,19 +60,8 @@ class ProductDetails extends StatelessWidget {
                           ),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: image ??
-                                  AssetImage('assets/images/dummy.jpg'),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(50),
-                              bottomRight: Radius.circular(50)),
-                          color: Colors.amber),
-                      width: double.infinity,
-                      height: size.height * .5,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -110,7 +111,7 @@ class ProductDetails extends StatelessWidget {
                           color: Colors.amber,
                           size: size.width * .06,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Text(
@@ -119,7 +120,7 @@ class ProductDetails extends StatelessWidget {
                               fontSize: size.width * .045,
                               fontWeight: FontWeight.w800),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Text(
@@ -130,7 +131,7 @@ class ProductDetails extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
@@ -158,7 +159,7 @@ class ProductDetails extends StatelessWidget {
                             elevation:
                                 MaterialStateProperty.all(size.width * .07),
                             foregroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 0, 0, 0)),
+                                const Color.fromARGB(255, 0, 0, 0)),
                             backgroundColor: MaterialStateProperty.all(
                                 const Color.fromARGB(255, 234, 234, 234)),
                           ),

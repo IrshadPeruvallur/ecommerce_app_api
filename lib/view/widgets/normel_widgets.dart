@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: non_constant_identifier_names
 RectangularButton(Size size,
     {required String name, required VoidCallback? onPressed}) {
   return SizedBox(
@@ -24,7 +25,7 @@ RectangularButton(Size size,
   );
 }
 
-Widget TextFieldWidget(
+Widget textFieldWidget(
   Size size, {
   controller,
   label,
@@ -46,8 +47,8 @@ Widget TextFieldWidget(
         controller: controller,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: TextStyle(color: Colors.black),
-          focusedBorder: UnderlineInputBorder(
+          labelStyle: const TextStyle(color: Colors.black),
+          focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.black),
           ),
         ),
@@ -59,14 +60,14 @@ Widget TextFieldWidget(
   );
 }
 
-Widget BlackElevatedButton(size, {required label, VoidCallback? onPressed}) {
+Widget blackElevatedButton(size, {required label, VoidCallback? onPressed}) {
   return SizedBox(
     height: size.width * .14,
     width: double.infinity,
     child: ElevatedButton(
         style: ButtonStyle(
             elevation: MaterialStatePropertyAll(size.width * .07),
-            backgroundColor: MaterialStatePropertyAll(Colors.black)),
+            backgroundColor: const MaterialStatePropertyAll(Colors.black)),
         onPressed: () {
           onPressed!();
         },
@@ -80,10 +81,10 @@ Widget BlackElevatedButton(size, {required label, VoidCallback? onPressed}) {
   );
 }
 
-Widget TextButtonWidget(size, context,
+Widget textButtonWidget(size, context,
     {required label, required VoidCallback? onPressed}) {
   return TextButton(
-      style: ButtonStyle(
+      style: const ButtonStyle(
           overlayColor: MaterialStatePropertyAll(Colors.transparent)),
       onPressed: () {
         onPressed!();
@@ -97,7 +98,7 @@ Widget TextButtonWidget(size, context,
 void showSuccessSnackbar(BuildContext context, String message) {
   final snackbar = SnackBar(
     content: Text(message),
-    duration: Duration(seconds: 3),
+    duration: const Duration(seconds: 3),
     backgroundColor: const Color.fromARGB(255, 0, 0, 0),
     behavior: SnackBarBehavior.floating,
   );
@@ -107,7 +108,7 @@ void showSuccessSnackbar(BuildContext context, String message) {
 void showErrorSnackbar(BuildContext context, String message) {
   final snackbar = SnackBar(
     content: Text(message),
-    duration: Duration(seconds: 3),
+    duration: const Duration(seconds: 3),
     backgroundColor: Colors.red,
     behavior: SnackBarBehavior.floating,
   );

@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:ecommerce_api/controller/product_provider.dart';
 import 'package:ecommerce_api/controller/search_provider.dart';
-import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/model/wishlist_model.dart';
 import 'package:ecommerce_api/view/pages/product_detail.dart';
 import 'package:ecommerce_api/view/pages/cart_page.dart';
@@ -12,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const Home({Key? key});
 
   @override
@@ -31,7 +29,7 @@ class Home extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () async {},
-                    icon: Icon(EneftyIcons.search_normal_2_outline),
+                    icon: const Icon(EneftyIcons.search_normal_2_outline),
                   ),
                   SizedBox(
                       width: size.width * .6,
@@ -45,10 +43,10 @@ class Home extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CartPage(),
+                            builder: (context) => const CartPage(),
                           ));
                     },
-                    icon: Icon(EneftyIcons.bag_2_outline),
+                    icon: const Icon(EneftyIcons.bag_2_outline),
                   ),
                 ],
               ),
@@ -139,14 +137,15 @@ class Home extends StatelessWidget {
                               onTap: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ProductDetails(),
+                                    builder: (context) =>
+                                        const ProductDetails(),
                                   )),
                               child: prodectShow(
                                 size,
                                 context,
                                 title: 'Dummy Product',
                                 imagepath:
-                                    AssetImage('assets/images/dummy.jpg'),
+                                    const AssetImage('assets/images/dummy.jpg'),
                                 prize: '₹19999',
                               ),
                             );

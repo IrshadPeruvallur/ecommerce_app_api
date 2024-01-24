@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_api/main.dart';
 import 'package:ecommerce_api/model/user_model.dart';
 import 'package:ecommerce_api/service/store.dart';
-import 'package:ecommerce_api/view/login_pages/login.dart';
 
 class UserService {
   String? userStatusCode;
@@ -12,7 +10,7 @@ class UserService {
   StoreService store = StoreService();
 
   createUser(UserModel userInfo) async {
-    final url = 'http://localhost:9000/api/users/register';
+    const url = 'http://localhost:9000/api/users/register';
     try {
       Response response = await dio.post(url, data: userInfo.toJson());
       createdStatusCode = response.statusCode.toString();
@@ -30,7 +28,7 @@ class UserService {
   }
 
   userLogin(UserModel userInfo) async {
-    final url = 'http://localhost:9000/api/users/login';
+    const url = 'http://localhost:9000/api/users/login';
     try {
       Response response = await dio.post(url, data: userInfo.toJson());
       userStatusCode = response.statusCode.toString();
@@ -52,7 +50,7 @@ class UserService {
         return null;
       }
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

@@ -1,14 +1,12 @@
-import 'dart:developer';
+// ignore_for_file: sort_child_properties_last
 
 import 'package:ecommerce_api/controller/store_provider.dart';
-import 'package:ecommerce_api/main.dart';
 import 'package:ecommerce_api/controller/wishlist_provider.dart';
 import 'package:ecommerce_api/view/widgets/normel_widgets.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Widget topBarIcon(Size size, {required IconData icon, title}) {
   return Column(
@@ -17,8 +15,8 @@ Widget topBarIcon(Size size, {required IconData icon, title}) {
       Container(
         height: size.width * .15,
         width: size.width * .15,
-        margin: EdgeInsets.only(right: 15),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(right: 15),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(10),
@@ -33,7 +31,7 @@ Widget topBarIcon(Size size, {required IconData icon, title}) {
         width: size.width * .15,
         child: Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.w700),
+          style: const TextStyle(fontWeight: FontWeight.w700),
         ),
       )
     ],
@@ -56,7 +54,7 @@ Widget prodectShow(Size size, context,
                   borderRadius: BorderRadius.circular(10),
                   color: const Color.fromARGB(192, 255, 255, 255)),
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   EneftyIcons.bag_2_outline,
                 ),
                 onPressed: () async {
@@ -70,14 +68,14 @@ Widget prodectShow(Size size, context,
           ),
           height: size.width * .40,
           width: size.width * .35,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             image: DecorationImage(image: imagepath, fit: BoxFit.cover),
             color: Colors.grey[200],
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         SizedBox(
           width: size.width * .35,
           child: ReadMoreText(
@@ -91,10 +89,10 @@ Widget prodectShow(Size size, context,
               trimExpandedText: "Show less",
               title),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(
           '$prize',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
     ),
@@ -102,7 +100,7 @@ Widget prodectShow(Size size, context,
 }
 
 Future toWishList(context, product) async {
-  final store = await Provider.of<StoreProvider>(context, listen: false);
+  final store = Provider.of<StoreProvider>(context, listen: false);
   final userId = await store.getValues('userId');
   final token = await store.getValues('tokenId');
   final wishProvider = Provider.of<WishListProvider>(context, listen: false);

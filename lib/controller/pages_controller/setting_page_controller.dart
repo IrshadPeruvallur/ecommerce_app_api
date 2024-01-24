@@ -11,9 +11,9 @@ class SettingsProvider extends ChangeNotifier {
   ];
 
   final List<Widget> listTabs = [
-    BlankPage(name: 'FAQ'),
-    BlankPage(name: 'Contact Us'),
-    BlankPage(name: 'Privacy & Terms'),
+    const BlankPage(name: 'FAQ'),
+    const BlankPage(name: 'Contact Us'),
+    const BlankPage(name: 'Privacy & Terms'),
   ];
 
   void userNameClicked() {

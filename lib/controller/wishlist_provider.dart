@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:ecommerce_api/model/wishlist_model.dart';
 import 'package:ecommerce_api/service/wishlist_service.dart';
 import 'package:flutter/material.dart';
 
 class WishListProvider extends ChangeNotifier {
-  WishListService _wishListService = WishListService();
+  final WishListService _wishListService = WishListService();
   List wishListItemId = [];
   String? wishListStatuscode;
   Future<void> addToWishList(

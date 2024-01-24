@@ -1,12 +1,11 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:ecommerce_api/model/product_model.dart';
 
 class ProductService {
   Dio dio = Dio();
   Future<List<ProductModel>> getData() async {
-    final url = 'http://localhost:9000/api/users/products';
+    const url = 'http://localhost:9000/api/users/products';
     try {
       final response = await dio.get(url);
       log('URL: $url');
@@ -23,7 +22,7 @@ class ProductService {
       }
     } catch (e) {
       log('Error in ApiService: $e');
-      throw e;
+      rethrow;
     }
   }
 }

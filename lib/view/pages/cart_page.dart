@@ -11,7 +11,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('My Cart'),
+        title: const Text('My Cart'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -22,7 +22,7 @@ class CartPage extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                     itemCount: 15,
-                    separatorBuilder: (context, index) => Divider(),
+                    separatorBuilder: (context, index) => const Divider(),
                     itemBuilder: (context, index) {
                       return SizedBox(
                         width: double.infinity,
@@ -38,7 +38,7 @@ class CartPage extends StatelessWidget {
                                   Container(
                                     height: size.width * .2,
                                     width: size.width * .2,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         image: DecorationImage(
                                             image: AssetImage(
                                                 'assets/images/dummy.jpg'),
@@ -139,7 +139,7 @@ class CartPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    BlackElevatedButton(size, label: 'Check Out')
+                    blackElevatedButton(size, label: 'Check Out')
                   ],
                 ))
           ],

@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:ecommerce_api/controller/product_provider.dart';
 import 'package:ecommerce_api/controller/store_provider.dart';
 import 'package:ecommerce_api/controller/wishlist_provider.dart';
@@ -15,19 +17,20 @@ class WishListTab extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text('Wishlist'),
+        title: const Text('Wishlist'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CartPage(),
+                  builder: (context) => const CartPage(),
                 ),
               );
             },
-            icon: Icon(EneftyIcons.bag_2_outline),
+            icon: const Icon(EneftyIcons.bag_2_outline),
           )
         ],
       ),
@@ -40,7 +43,7 @@ class WishListTab extends StatelessWidget {
                 return Expanded(
                   child: ListView.separated(
                     itemCount: wishList.wishListItemId.length,
-                    separatorBuilder: (context, index) => Divider(),
+                    separatorBuilder: (context, index) => const Divider(),
                     itemBuilder: (context, index) {
                       final itemId = wishList.wishListItemId[index];
                       final product = productItem.prodectList[index];
@@ -71,7 +74,7 @@ class WishListTab extends StatelessWidget {
                                           fit: BoxFit.cover,
                                         ),
                                         color: Colors.grey,
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                           Radius.circular(15),
                                         ),
                                       ),
@@ -130,7 +133,7 @@ class WishListTab extends StatelessWidget {
   }
 
   Future getWishList(context) async {
-    final store = await Provider.of<StoreProvider>(context, listen: false);
+    final store = Provider.of<StoreProvider>(context, listen: false);
     final getPrvd = Provider.of<WishListProvider>(context, listen: false);
     final userId = await store.getValues('userId');
     final token = await store.getValues('tokenId');

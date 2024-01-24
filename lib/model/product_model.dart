@@ -17,11 +17,11 @@ class ProductModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
-      '_id': this.id,
-      'title': this.title,
-      'description': this.description,
-      'price': this.price,
-      'image': this.image,
+      '_id': id,
+      'title': title,
+      'description': description,
+      'price': price,
+      'image': image,
     };
     return data;
   }
